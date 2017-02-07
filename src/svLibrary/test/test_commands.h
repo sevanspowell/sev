@@ -2,7 +2,7 @@
 #include <cstring>
 
 extern "C" {
-#include <sev/commands.h>
+#include <sv/console/commands.h>
 }
 
 // Ensure make null command works as expected

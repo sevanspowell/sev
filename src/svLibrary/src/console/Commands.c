@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <sev/commands.h>
+#include <sv/console/Commands.h>
 
 static void svCommandsBuildArgumentArray(const char *token[],
                                          svCommand *command) {

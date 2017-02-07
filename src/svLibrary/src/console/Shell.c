@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <sev/commands.h>
-#include <sev/shell.h>
-#include <sev/tokenizer.h>
+#include <sv/console/Commands.h>
+#include <sv/console/Shell.h>
+#include <sv/console/Tokenizer.h>
 
 #define SV_SHELL_OUT_BUFFER_SIZE 1024
 static char svOutputBuffer[SV_SHELL_OUT_BUFFER_SIZE];

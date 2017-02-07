@@ -2,7 +2,7 @@
 #include <cstring>
 
 extern "C" {
-#include <sev/shell.h>
+#include <sv/console/Shell.h>
 }
 
 // Test that the error buffer is populated correctly when input line has string

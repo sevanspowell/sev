@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <sev/tokenizer.h>
+#include <sv/console/Tokenizer.h>
 
 /**
  * \returns 1 if \p c is a '"' or "'" character, 0 otherwise.
@@ -135,6 +135,10 @@ int svTokenizerGetNumTokens(const char *inputLine, svTokenizerError *error) {
     while (*it) {
         /* If escape character, skip over it and next character */
         if (*it == '\\') {
+            // If we're about to reach end of input, finish up
+            if (*(it + 1) == '\0' || *(it + 2) == '\0') {
+                return numTokens;
+            }
             ++it;
             ++it;
         } else {

@@ -1,8 +1,9 @@
-/*===-- sev/shell.h - Shell API -------------------------------------*- C -*-===
+/*===-- sev/console/Shell.h - Shell API -----------------------------*- C -*-===
  *
  *                  The Special Engine Variant Game Engine
  *
  * This file is distributed under the MIT License. See LICENSE.txt for details.
+ *
  *===----------------------------------------------------------------------===*/
 /**
  * \file
