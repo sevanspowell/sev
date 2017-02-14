@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cmake -E make_directory build
-cmake -E chdir build cmake -E time cmake -G Xcode ../src
-cmake -E time cmake --build build --config Debug --clean-first
+cmake -E make_directory build_xcode
+cmake -E chdir build_xcode cmake -E time cmake -G Xcode ../src
+cmake -E time cmake --build build_xcode --config Debug --clean-first

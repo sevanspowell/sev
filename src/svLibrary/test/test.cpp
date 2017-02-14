@@ -7,6 +7,7 @@ TEST(Test, One) { EXPECT_EQ(1, 1); }
 #include "test_shell.h"
 #include "test_console.h"
 #include "test_log.h"
+#include "test_keycodes.h"
 #include "test_sdl2platform.h"
 
 int main(int argc, char **argv) {

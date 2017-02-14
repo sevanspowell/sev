@@ -27,6 +27,6 @@ class SDL2Platform : public Platform {
     virtual uint32_t getMilliseconds() const;
 
     /// \copydoc Platform::getNextEvent()
-    virtual PlatformEvent getNextEvent();
+    virtual bool getNextEvent(PlatformEvent *event);
 };
 }

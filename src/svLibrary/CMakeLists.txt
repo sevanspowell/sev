@@ -8,6 +8,7 @@ add_library(sv
   src/console/Console.cpp
   src/console/Shell.c
   src/console/Tokenizer.c
+  src/platform/Keycodes.cpp
   src/platform/Platform.cpp
   src/platform/SDL2Platform.cpp
   )

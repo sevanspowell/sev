@@ -26,18 +26,23 @@
 namespace sv {
 enum class PlatformEventType {
     None = 0,  // No event, but time field is still valid
-    Key,       // value1 is key code, value 2 is down flag (1 for down)
+    Key,       // value1 is key code, value2 is down flag (1 for down)
     TextInput, // data is user's text input
     Mouse,     // value1 and value2 are relative, signed, x/y mouse movements
-               // Packet     // TODO
+    // Packet,     // TODO
+    Quit,
 };
 
-typedef struct {
-    int time;
+struct PlatformEvent {
+    PlatformEvent()
+        : time(0), type(PlatformEventType::None), value1(0), value2(0),
+          data(nullptr) {}
+
+    uint32_t time;
     PlatformEventType type;
     int value1, value2;
     std::shared_ptr<std::vector<char>> data;
-} PlatformEvent;
+};
 
 /// Operating System abstraction
 /// Is an abstract base class.
@@ -70,8 +75,12 @@ class Platform {
 
     ///-------------------------------------------------------------------------
     /// Get oldest event on the event queue.
+    ///
+    /// \param   [out] event   If this method returns true, event is placed
+    /// here.
+    /// \returns True if there is an event to get, false if there is not.
     ///-------------------------------------------------------------------------
-    virtual PlatformEvent getNextEvent() = 0;
+    virtual bool getNextEvent(PlatformEvent *event) = 0;
 
     ///-------------------------------------------------------------------------
     /// Push an event onto the queue
