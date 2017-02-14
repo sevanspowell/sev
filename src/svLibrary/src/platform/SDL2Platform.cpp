@@ -38,9 +38,6 @@ bool SDL2Platform::getNextEvent(PlatformEvent *event) {
             // There was an event
             result = true;
 
-            // PlatformEvent event;
-            // event = convertToPlatformEvent(sdlEvent);
-            // queueEvent(event);
             switch (sdlEvent.type) {
             case SDL_KEYDOWN: {
                 PlatformEvent keyDownEvent;
