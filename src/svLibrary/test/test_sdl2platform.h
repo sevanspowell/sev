@@ -15,6 +15,54 @@ TEST(SDL2Platform, GetMilliseconds) {
     platform.shutdown();
 }
 
+// Test that we can successfully get text input
+// TEST(SDL2Platform, TextInput) {
+//     sv::SDL2Platform platform;
+
+//     EXPECT_TRUE(platform.initialize());
+//     EXPECT_FALSE(platform.isTextInputActive());
+
+//     bool done = false;
+//     while (!done) {
+//         sv::PlatformEvent event;
+//         while (platform.getNextEvent(&event)) {
+//             switch (event.type) {
+//             case sv::PlatformEventType::Quit: {
+//                 done = true;
+//                 break;
+//             }
+//             case sv::PlatformEventType::Key: {
+//                 if ((sv::Keycodes::Enum)event.value1 ==
+//                         sv::Keycodes::Enum::KEY_BACKQUOTE &&
+//                     event.value2 == 0) {
+//                     if (platform.isTextInputActive() == false) {
+//                         platform.startTextInput();
+//                         EXPECT_TRUE(platform.isTextInputActive());
+//                     } else {
+//                         platform.stopTextInput();
+//                         EXPECT_FALSE(platform.isTextInputActive());
+//                     }
+//                 }
+//                 break;
+//             }
+//             case sv::PlatformEventType::TextInput: {
+//                 if (event.data != nullptr) {
+//                     std::string str(event.data->begin(), event.data->end());
+//                     std::cout << "Text Received: " << str << std::endl;
+//                 }
+//                 break;
+//             }
+//             default: { break; }
+//             }
+//         }
+//     }
+
+//     platform.stopTextInput();
+//     EXPECT_FALSE(platform.isTextInputActive());
+
+//     platform.shutdown();
+// }
+
 // Example event loop testing 'getNextEvent'
 // TEST(SDL2Platform, ExampleEventLoop) {
 //     sv::SDL2Platform platform;
@@ -53,12 +101,14 @@ TEST(SDL2Platform, GetMilliseconds) {
 //                 std::cout << "\tKey event: "
 //                           << "'" << sv::getKeycodeString(
 //                                         (sv::Keycodes::Enum)event.value1)
-//                           << "' went " << (event.value2 == 1 ? "Down" : "Up")
+//                           << "' went " << (event.value2 == 1 ? "Down" :
+//                           "Up")
 //                           << "." << std::endl;
 //                 break;
 //             }
 //             case sv::PlatformEventType::Mouse: {
-//                 std::cout << "\tMouse event: mouse moved x: " << event.value1
+//                 std::cout << "\tMouse event: mouse moved x: " <<
+//                 event.value1
 //                           << " y: " << event.value2 << "." << std::endl;
 //                 break;
 //             }

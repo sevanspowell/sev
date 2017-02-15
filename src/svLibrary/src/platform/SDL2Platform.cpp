@@ -1,3 +1,6 @@
+#include <cstring>
+#include <iostream>
+
 #include <SDL2/SDL.h>
 
 #include <sv/Globals.h>
@@ -20,6 +23,8 @@ bool SDL2Platform::initialize() {
         sv_globals::log(LogArea::Enum::PLATFORM, LogLevel::Enum::ERROR,
                         "SDL2: Failed to initialize video subsystem.");
     }
+
+    stopTextInput();
 
     return result;
 }
@@ -116,6 +121,19 @@ bool SDL2Platform::getNextEvent(PlatformEvent *event) {
                 queueEvent(mouseMotionEvent);
                 break;
             }
+            case SDL_TEXTINPUT: {
+                PlatformEvent textInputEvent;
+
+                textInputEvent.time = sdlEvent.text.timestamp;
+                textInputEvent.type = PlatformEventType::TextInput;
+                size_t len          = strlen(sdlEvent.text.text);
+                textInputEvent.data =
+                    std::shared_ptr<std::vector<char>>(new std::vector<char>(
+                        sdlEvent.text.text, sdlEvent.text.text + len));
+
+                queueEvent(textInputEvent);
+                break;
+            }
             case SDL_QUIT: {
                 PlatformEvent quitEvent;
 
@@ -139,6 +157,14 @@ bool SDL2Platform::getNextEvent(PlatformEvent *event) {
     }
 
     return result;
+}
+
+void SDL2Platform::startTextInput() { SDL_StartTextInput(); }
+
+void SDL2Platform::stopTextInput() { SDL_StopTextInput(); }
+
+bool SDL2Platform::isTextInputActive() const {
+    return (SDL_IsTextInputActive() == SDL_TRUE ? true : false);
 }
 
 Keycodes::Enum convertSDL2KeyToPlatformKey(SDL_Keycode keyCode) {

@@ -87,6 +87,26 @@ class Platform {
     ///-------------------------------------------------------------------------
     void queueEvent(const PlatformEvent &event);
 
+    ///-------------------------------------------------------------------------
+    /// Start interpreting keyboard events as text entry.
+    ///-------------------------------------------------------------------------
+    virtual void startTextInput() = 0;
+
+    ///-------------------------------------------------------------------------
+    /// Stop interpreting keyboard events as text entry.
+    ///-------------------------------------------------------------------------
+    virtual void stopTextInput() = 0;
+
+    ///-------------------------------------------------------------------------
+    /// Are we currently interpreting keyboard events as text entry?
+    ///
+    /// NOTE: text input starts INACTIVE after a call to Platform::initialize().
+    ///
+    /// \returns True if we are currently interpreting keyboard events as text
+    /// entry, false if we aren't.
+    ///-------------------------------------------------------------------------
+    virtual bool isTextInputActive() const = 0;
+
     // static Platform &getSingleton();
 
     // static Platform *getSingletonPtr();

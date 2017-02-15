@@ -28,5 +28,14 @@ class SDL2Platform : public Platform {
 
     /// \copydoc Platform::getNextEvent()
     virtual bool getNextEvent(PlatformEvent *event);
+
+    /// \copydoc Platform::startTextInput()
+    virtual void startTextInput();
+
+    /// \copydoc Platform::stopTextInput()
+    virtual void stopTextInput();
+
+    /// \copydoc Platform::isTextInputActive()
+    virtual bool isTextInputActive() const;
 };
 }
