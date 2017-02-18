@@ -39,9 +39,9 @@ void Console::appendToErrorBuffer(const std::string &errorStr) {
     errorBuffer += errorStr;
 }
 
-const char *Console::getOutputBuffer() const { return outputBuffer.c_str(); }
+const std::string &Console::getOutputBuffer() const { return outputBuffer; }
 
-const char *Console::getErrorBuffer() const { return errorBuffer.c_str(); }
+const std::string &Console::getErrorBuffer() const { return errorBuffer; }
 
 void Console::appendString(const std::string &str) {
     inputBuffer += str;
@@ -175,7 +175,7 @@ bool Console::executeString(const std::string &str) {
     bool result = execute();
 
     inputBuffer.clear();
-    
+
     return result;
 }
 }

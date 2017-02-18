@@ -181,11 +181,11 @@ TEST(Console, WriteToBufferTest) {
 }
 
 namespace sv {
-    class FailCmd : public ConsoleCommand {
-        virtual bool execute(Console *const console, int argc, char *argv[]) {
-            return false;
-        }
-    };
+class FailCmd : public ConsoleCommand {
+    virtual bool execute(Console *const console, int argc, char *argv[]) {
+        return false;
+    }
+};
 }
 
 // Test a command that returns failure
@@ -197,4 +197,15 @@ TEST(Console, CommandReturnsFail) {
     EXPECT_FALSE(console.executeString("fail"));
     EXPECT_TRUE(std::string("") == console.getOutputBuffer());
     EXPECT_TRUE(std::string("") == console.getErrorBuffer());
+}
+
+TEST(Console, CommandWithNameExists) {
+    sv::Console console;
+    std::shared_ptr<sv::FailCmd> cmd(new sv::FailCmd);
+
+    EXPECT_FALSE(console.commandWithNameExists("fail"));
+    console.registerCommand("fail", cmd);
+    EXPECT_TRUE(console.commandWithNameExists("fail"));
+    console.removeCommand("fail");
+    EXPECT_FALSE(console.commandWithNameExists("fail"));
 }

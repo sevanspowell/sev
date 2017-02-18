@@ -112,10 +112,8 @@ class Console {
     ///-------------------------------------------------------------------------
     /// Get the output buffer of the console, where useful information from
     /// console commands is placed.
-    ///
-    /// \returns NULL-terminated string.
     ///-------------------------------------------------------------------------
-    const char *getOutputBuffer() const;
+    const std::string &getOutputBuffer() const;
 
     ///-------------------------------------------------------------------------
     /// Get the error buffer of the console, where errors from console commands
@@ -123,7 +121,7 @@ class Console {
     ///
     /// \returns NULL-terminated string.
     ///-------------------------------------------------------------------------
-    const char *getErrorBuffer() const;
+    const std::string &getErrorBuffer() const;
 
     ///-------------------------------------------------------------------------
     /// Append a string to the to the console, to be executed when 'execute()'
