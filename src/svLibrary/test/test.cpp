@@ -9,6 +9,8 @@ TEST(Test, One) { EXPECT_EQ(1, 1); }
 #include "test_log.h"
 #include "test_keycodes.h"
 #include "test_sdl2platform.h"
+#include "test_engine.h"
+#include "test_scriptinterface.h"
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
