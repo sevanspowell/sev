@@ -5,6 +5,7 @@ project(svLibrary VERSION 0.0.1 LANGUAGES C CXX)
 add_library(sv
   src/Engine.cpp
   src/Log.cpp
+  src/ProgramOptions.cpp
   src/console/Commands.c
   src/console/Console.cpp
   src/console/Shell.c
