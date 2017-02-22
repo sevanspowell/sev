@@ -10,6 +10,7 @@ add_library(sv
   src/console/Console.cpp
   src/console/Shell.c
   src/console/Tokenizer.c
+  src/input/Input.cpp
   src/platform/Keycodes.cpp
   src/platform/Platform.cpp
   src/platform/SDL2Platform.cpp
@@ -27,8 +28,9 @@ target_include_directories(sv
 set_property(TARGET sv PROPERTY CXX_STANDARD_REQUIRED ON)
 set_property(TARGET sv PROPERTY CXX_STANDARD 11)
 
-# target_compile_features(sv
-#   )
+target_compile_features(sv PUBLIC 
+  cxx_strong_enums
+  )
 
 target_link_libraries(sv
   sdl2
