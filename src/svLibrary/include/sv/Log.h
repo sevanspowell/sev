@@ -94,7 +94,7 @@ class LogDistributor {
     void logMessage(const LogMessage &message);
 
   private:
-    typedef std::vector<std::shared_ptr<LogObserver>> ObserverList;
+    typedef std::vector<std::shared_ptr<LogObserver> > ObserverList;
     ObserverList observerList;
 };
 }

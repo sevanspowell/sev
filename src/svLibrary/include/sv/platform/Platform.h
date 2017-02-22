@@ -21,8 +21,6 @@
 #include <memory>
 #include <queue>
 
-#include <sv/Singleton.h>
-
 namespace sv {
 enum class PlatformEventType {
     None = 0,  // No event, but time field is still valid
@@ -41,7 +39,7 @@ struct PlatformEvent {
     uint32_t time;
     PlatformEventType type;
     int value1, value2;
-    std::shared_ptr<std::vector<char>> data;
+    std::shared_ptr<std::vector<char> > data;
 };
 
 /// Operating System abstraction
