@@ -1,5 +1,8 @@
+#include <memory>
+
 #include <sv/ClientVariables.h>
 #include <sv/Precision.h>
+#include <sv/console/ConsoleCommands.h>
 
 // Test that isFloat works correctly
 TEST(ClientVariables, IsFloat) {
@@ -155,4 +158,19 @@ TEST(ClientVariables, RemoveVariable) {
 
     EXPECT_EQ(textureMode, std::string("mipmapLinear"));
     EXPECT_EQ(map, std::string("title.bsp"));
+}
+
+// Test that using the 'set' console command works
+TEST(ClientVariables, SetCmd) {
+    std::shared_ptr<sv::ClientVariables> cvars(new sv::ClientVariables);
+    std::shared_ptr<sv::SetCommand> setCmd(new sv::SetCommand(cvars));
+
+    sv::Console console;
+
+    console.registerCommand("set", setCmd);
+
+    EXPECT_TRUE(console.executeString("set \"sensitivity\" \"100.0\""));
+    float sensitivity = 1.0f;
+    EXPECT_TRUE(cvars->getFloatValue("sensitivity", &sensitivity));
+    EXPECT_TRUE(sv::floatsAreEqual(100.0f, sensitivity));
 }

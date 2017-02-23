@@ -107,4 +107,5 @@ bool isFloat(const std::string &value);
 /// \returns True if given string can be parsed as an int and false otherwise.
 ///-----------------------------------------------------------------------------
 bool isInt(const std::string &value);
+
 }

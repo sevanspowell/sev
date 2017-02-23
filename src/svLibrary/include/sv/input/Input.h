@@ -19,8 +19,6 @@
 #include <string>
 #include <vector>
 
-#include <sv/console/Console.h>
-
 namespace sv {
 
 /// Associates a key with a command string
@@ -35,46 +33,8 @@ struct Binding {
 
 typedef std::vector<Binding> Bindings;
 
-/// Used to bind a key to a particular command string.
-class BindCommand : public ConsoleCommand {
-  public:
-    BindCommand(const std::shared_ptr<Bindings> bindings_)
-        : bindings(bindings_) {}
-
-    ///-------------------------------------------------------------------------
-    /// \copydoc ConsoleCommand::execute()
-    ///
-    /// Usage: bind "KEY_NAME" "COMMAND STRING"
-    ///-------------------------------------------------------------------------
-    virtual bool execute(Console *const console, int argc, char *argv[]);
-
-  private:
-    std::shared_ptr<Bindings> bindings;
-};
-
-/// Used to unbind all keys
-class UnbindAllCommand : public ConsoleCommand {
-  public:
-    UnbindAllCommand(const std::shared_ptr<Bindings> bindings_)
-        : bindings(bindings_) {}
-
-    ///-------------------------------------------------------------------------
-    /// \copydoc ConsoleCommand::execute()
-    ///
-    /// Usage: unbindall
-    ///-------------------------------------------------------------------------
-    virtual bool execute(Console *const console, int argc, char *argv[]);
-
-  private:
-    std::shared_ptr<Bindings> bindings;
-};
-
 class Input {
   public:
-    Input()
-        : bindings(new Bindings()), bindCmd(new BindCommand(bindings)),
-          unbindAllCmd(new UnbindAllCommand(bindings)) {}
-
     ///-------------------------------------------------------------------------
     /// Get the command string associated with the given key name.
     ///
@@ -83,11 +43,27 @@ class Input {
     ///-------------------------------------------------------------------------
     std::string getBinding(const std::string &keyName) const;
 
-  private:
-    std::shared_ptr<Bindings> bindings;
+    ///-------------------------------------------------------------------------
+    /// Associate a key name with a command string.
+    ///-------------------------------------------------------------------------
+    void bind(const std::string &keyName, const std::string &commandStr);
 
-  public:
-    std::shared_ptr<BindCommand> bindCmd;
-    std::shared_ptr<UnbindAllCommand> unbindAllCmd;
+    ///-------------------------------------------------------------------------
+    /// \returns Pointer to binding with the given name or nullptr if not found.
+    ///-------------------------------------------------------------------------
+    Binding *findBinding(const std::string &keyName);
+
+    ///-------------------------------------------------------------------------
+    /// \returns Pointer to binding with the given name or nullptr if not found.
+    ///-------------------------------------------------------------------------
+    const Binding *findBinding(const std::string &keyName) const;
+
+    ///-------------------------------------------------------------------------
+    /// Remove all bindings from the input system.
+    ///-------------------------------------------------------------------------
+    void clearAllBindings();
+
+  private:
+    Bindings bindings;
 };
 }

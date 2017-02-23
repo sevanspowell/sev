@@ -4,11 +4,13 @@ project(svLibrary VERSION 0.0.1 LANGUAGES C CXX)
 
 add_library(sv
   src/ClientVariables.cpp
+  src/Common.cpp
   src/Engine.cpp
   src/Log.cpp
   src/ProgramOptions.cpp
   src/console/Commands.c
   src/console/Console.cpp
+  src/console/ConsoleCommands.cpp
   src/console/Shell.c
   src/console/Tokenizer.c
   src/input/Input.cpp
