@@ -13,6 +13,7 @@ TEST(Test, One) { EXPECT_EQ(1, 1); }
 #include "test_scriptinterface.h"
 #include "test_programoptions.h"
 #include "test_input.h"
+#include "test_clientvariables.h"
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

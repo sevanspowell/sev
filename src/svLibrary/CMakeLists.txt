@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
 project(svLibrary VERSION 0.0.1 LANGUAGES C CXX)
 
 add_library(sv
+  src/ClientVariables.cpp
   src/Engine.cpp
   src/Log.cpp
   src/ProgramOptions.cpp
