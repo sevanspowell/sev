@@ -17,6 +17,8 @@ add_library(sv
   src/platform/Keycodes.cpp
   src/platform/Platform.cpp
   src/platform/SDL2Platform.cpp
+  src/resource/DateTime.cpp
+  src/resource/ResourceFolderPC.cpp
   src/script/ScriptInterface.cpp
   )
 

@@ -15,6 +15,8 @@ TEST(Test, One) { EXPECT_EQ(1, 1); }
 #include "test_input.h"
 #include "test_clientvariables.h"
 #include "test_common.h"
+#include "test_datetime.h"
+#include "test_resourcefolderpc.h"
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
