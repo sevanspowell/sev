@@ -3,7 +3,12 @@
 namespace sv {
 ///-----------------------------------------------------------------------------
 /// Strip surrounding quotes from a C string if the first and last characters
-//// are both either a " or a ' character.
+/// are both either a " or a ' character.
 ///-----------------------------------------------------------------------------
 char *stripSurroundingQuotes(char *str);
+
+///-----------------------------------------------------------------------------
+/// \returns True if the string \p str matches the wildcard pattern \pat.
+///-----------------------------------------------------------------------------
+bool wildcardMatch(const char *pat, const char *str);
 }

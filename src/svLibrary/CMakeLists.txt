@@ -18,6 +18,8 @@ add_library(sv
   src/platform/Platform.cpp
   src/platform/SDL2Platform.cpp
   src/resource/DateTime.cpp
+  src/resource/Resource.cpp
+  src/resource/ResourceCache.cpp
   src/resource/ResourceFolderPC.cpp
   src/script/ScriptInterface.cpp
   )

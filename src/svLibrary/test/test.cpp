@@ -12,11 +12,12 @@ TEST(Test, One) { EXPECT_EQ(1, 1); }
 #include "test_engine.h"
 #include "test_scriptinterface.h"
 #include "test_programoptions.h"
-#include "test_input.h"
-#include "test_clientvariables.h"
+// #include "test_input.h"
+// #include "test_clientvariables.h"
 #include "test_common.h"
 #include "test_datetime.h"
 #include "test_resourcefolderpc.h"
+#include "test_resourcecache.h"
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

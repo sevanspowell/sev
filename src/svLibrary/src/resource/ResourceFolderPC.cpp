@@ -15,9 +15,12 @@
 
 namespace sv {
 bool ResourceFolderPC::open() {
+    isFolderOpen = true;
     // No need to 'open' a folder
     return true;
 }
+
+bool ResourceFolderPC::isOpen() { return isFolderOpen; }
 
 int32_t ResourceFolderPC::getRawResourceSize(const Resource &r) {
     std::stringstream fullPath;

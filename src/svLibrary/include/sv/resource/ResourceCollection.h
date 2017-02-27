@@ -29,18 +29,24 @@ namespace sv {
 ///
 /// The Resource class is used to uniquely identify resources.
 ///-----------------------------------------------------------------------------
-class IResourceCollection {
+class ResourceCollection {
   public:
     ///-------------------------------------------------------------------------
     /// Virtual destructor.
     ///-------------------------------------------------------------------------
-    virtual ~IResourceCollection() {}
+    virtual ~ResourceCollection() {}
     ///-------------------------------------------------------------------------
     /// Open the resource file for reading.
     ///
     /// \returns True if opening the file was successful and false otherwise.
     ///-------------------------------------------------------------------------
     virtual bool open() = 0;
+
+    ///-------------------------------------------------------------------------
+    /// \returns True if the resource collection has already been opened, false
+    /// otherwise.
+    ///-------------------------------------------------------------------------
+    virtual bool isOpen() = 0;
 
     ///-------------------------------------------------------------------------
     /// Get the uncompressed size (in bytes) of the given resource in the

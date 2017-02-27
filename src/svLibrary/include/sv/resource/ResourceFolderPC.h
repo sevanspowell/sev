@@ -22,13 +22,16 @@ namespace sv {
 ///
 /// We assume that all resource identifiers are relative to the folder path.
 ///-----------------------------------------------------------------------------
-class ResourceFolderPC : public IResourceCollection {
+class ResourceFolderPC : public ResourceCollection {
   public:
     ResourceFolderPC(const std::string &folderPath_)
-        : folderPath(folderPath_) {}
+        : folderPath(folderPath_), isFolderOpen(false) {}
 
     /// \copydoc ResourceCollection::open
     virtual bool open();
+
+    /// \copydoc ResourceCollection::isOpen
+    virtual bool isOpen();
 
     /// \copydoc ResourceCollection:getRawResourceSize
     virtual int32_t getRawResourceSize(const Resource &r);
@@ -74,5 +77,6 @@ class ResourceFolderPC : public IResourceCollection {
                                         size_t &currentIndex) const;
 
     std::string folderPath;
+    bool isFolderOpen;
 };
 }

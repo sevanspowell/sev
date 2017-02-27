@@ -37,20 +37,20 @@ TEST(Input, ClearAllBindings) {
 }
 
 TEST(Input, BindCmd) {
-    std::shared_ptr<sv::Input> input(new sv::Input);
+    sv::Input input;
     std::shared_ptr<sv::BindCommand> bindCmd(new sv::BindCommand(input));
     sv::Console console;
 
     console.registerCommand("bind", bindCmd);
     EXPECT_TRUE(console.executeString("bind KEY_W +forward"));
-    EXPECT_EQ(std::string("+forward"), input->getBinding("KEY_W"));
+    EXPECT_EQ(std::string("+forward"), input.getBinding("KEY_W"));
 
     EXPECT_TRUE(console.executeString("bind \"KEY_W\" \"+left\""));
-    EXPECT_EQ(std::string("+left"), input->getBinding("KEY_W"));
+    EXPECT_EQ(std::string("+left"), input.getBinding("KEY_W"));
 }
 
 TEST(Input, UnbindAllCmd) {
-    std::shared_ptr<sv::Input> input(new sv::Input);
+    sv::Input input;
     std::shared_ptr<sv::BindCommand> bindCmd(new sv::BindCommand(input));
     std::shared_ptr<sv::UnbindAllCommand> unbindAllCmd(
         new sv::UnbindAllCommand(input));
@@ -60,8 +60,8 @@ TEST(Input, UnbindAllCmd) {
     console.registerCommand("unbindall", unbindAllCmd);
 
     EXPECT_TRUE(console.executeString("bind KEY_W +forward"));
-    EXPECT_TRUE(std::string("+forward") == input->getBinding("KEY_W"));
+    EXPECT_TRUE(std::string("+forward") == input.getBinding("KEY_W"));
 
     EXPECT_TRUE(console.executeString("unbindall"));
-    EXPECT_TRUE(std::string("") == input->getBinding("KEY_W"));
+    EXPECT_TRUE(std::string("") == input.getBinding("KEY_W"));
 }

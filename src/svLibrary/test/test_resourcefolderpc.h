@@ -2,17 +2,21 @@
 
 #include <sv/resource/ResourceFolderPC.h>
 
+namespace resource_folder {
 const std::string assetDir("./src/svLibrary/test/assets");
 const size_t numAssets = 1;
+}
 
 TEST(ResourceFolderPC, OpenFolder) {
-    sv::ResourceFolderPC folder(assetDir);
+    sv::ResourceFolderPC folder(resource_folder::assetDir);
 
+    EXPECT_FALSE(folder.isOpen());
     EXPECT_TRUE(folder.open());
+    EXPECT_TRUE(folder.isOpen());
 }
 
 TEST(ResourceFolderPC, OpenFile) {
-    sv::ResourceFolderPC folder(assetDir);
+    sv::ResourceFolderPC folder(resource_folder::assetDir);
 
     EXPECT_TRUE(folder.open());
     sv::Resource file("0helloworld.txt");
@@ -30,11 +34,11 @@ TEST(ResourceFolderPC, OpenFile) {
 }
 
 TEST(ResourceFolderPC, GetNumResources) {
-    sv::ResourceFolderPC folder(assetDir);
+    sv::ResourceFolderPC folder(resource_folder::assetDir);
 
     EXPECT_TRUE(folder.open());
 
-    EXPECT_EQ(numAssets, folder.getNumResources());
+    EXPECT_EQ(resource_folder::numAssets, folder.getNumResources());
 
     sv::ResourceFolderPC folder2("");
 
@@ -44,7 +48,7 @@ TEST(ResourceFolderPC, GetNumResources) {
 }
 
 TEST(ResourceFolderPC, GetResourceByIndex) {
-    sv::ResourceFolderPC folder(assetDir);
+    sv::ResourceFolderPC folder(resource_folder::assetDir);
 
     EXPECT_TRUE(folder.open());
     sv::Resource file("0helloworld.txt");
@@ -54,7 +58,7 @@ TEST(ResourceFolderPC, GetResourceByIndex) {
 }
 
 TEST(ResourceFolderPC, GetResourceModifiedDate) {
-    sv::ResourceFolderPC folder(assetDir);
+    sv::ResourceFolderPC folder(resource_folder::assetDir);
 
     EXPECT_TRUE(folder.open());
     sv::Resource file("0helloworld.txt");

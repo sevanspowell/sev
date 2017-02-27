@@ -32,4 +32,6 @@ class Resource {
 
     // TODO Is Binary or Intermediate resource?
 };
+
+bool operator<(const Resource &r1, const Resource &r2);
 }
