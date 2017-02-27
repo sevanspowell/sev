@@ -119,7 +119,7 @@ bool Console::execute() {
             memset(commands, '\0', sizeof(svCommand) * numCommands);
             svCommandsMakeNullCommand(commands + numCommands - 1);
 
-            svCommandsSeparate(token, commands, NULL); // Already validate input
+            svCommandsSeparate(token, commands, NULL); // Already valid input
 
             // Process commands
             // For each command (ignoring NULL command): calculate argc, send
@@ -137,7 +137,8 @@ bool Console::execute() {
                         ++argc;
                     }
 
-                    result = search->second->execute(this, argc, command->argv);
+                    result =
+                        search->second->execute(*this, argc, command->argv);
                     // Don't execute any more commands
                     if (result == false) {
                         break;
@@ -145,7 +146,7 @@ bool Console::execute() {
                 } else {
                     std::ostringstream errorMsg;
                     errorMsg << "No command with name '";
-                    errorMsg << command->argv[0] << "'.";
+                    errorMsg << std::string(command->argv[0]) << "'.";
                     errorBuffer += errorMsg.str();
 
                     result = false;
@@ -173,8 +174,6 @@ bool Console::executeString(const std::string &str) {
 
     appendString(str);
     bool result = execute();
-
-    inputBuffer.clear();
 
     return result;
 }

@@ -31,7 +31,7 @@ static int svCommandsIsSeparator(char *token) {
     if (token == NULL) {
         return 0;
     }
-    
+
     char *commandSeparators[] = {SV_SEP_SEQ, NULL};
 
     for (int i = 0; commandSeparators[i] != NULL; ++i) {
@@ -42,6 +42,8 @@ static int svCommandsIsSeparator(char *token) {
 
     return 0;
 }
+
+int svCommandsIsSep(char token) { svCommandsIsSeparator(&token); }
 
 int svCommandsValidateTokenArray(char *token[], svCommandError *error) {
     if (token == NULL || *token == NULL) {
@@ -83,7 +85,7 @@ int svCommandsGetNum(char *token[], svCommandError *error) {
     if (svCommandsValidateTokenArray(token, error) != 0) {
         return -1;
     }
-    
+
     if (token == NULL) {
         return 0;
     } else if (token && token[0] == NULL) {
@@ -93,7 +95,7 @@ int svCommandsGetNum(char *token[], svCommandError *error) {
     int numCommands = 0;
 
     char **it = token;
-    while (*it) {
+    while (*it && **it) {
         if (svCommandsIsSeparator(*it)) {
             ++numCommands;
         }
@@ -121,7 +123,7 @@ int svCommandsSeparate(char *token[], svCommand command[],
 
     int i     = 0;
     char **it = token;
-    while (*it) {
+    while (*it && **it) {
         last = i;
         if (svCommandsIsSeparator(*it)) {
             sep = *it;
@@ -131,7 +133,7 @@ int svCommandsSeparate(char *token[], svCommand command[],
             command[c].sep   = sep;
             ++c;
 
-            /* Advance first indes */
+            /* Advance first index */
             first = i + 1;
         } else if (*(it + 1) == NULL) {
             /* We're at last token and it's not a separator */

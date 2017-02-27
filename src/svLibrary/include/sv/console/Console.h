@@ -58,7 +58,7 @@ class ConsoleCommand {
     /// \param   argv      Array of arguments.
     /// \returns True if command executed successfully, false otherwise.
     ///-------------------------------------------------------------------------
-    virtual bool execute(Console *const console, int argc, char *argv[]) = 0;
+    virtual bool execute(Console &console, int argc, char *argv[]) = 0;
 
     // Rollback changes of command execution.
     // virtual void rollback() = 0;
@@ -152,7 +152,7 @@ class Console {
     bool executeString(const std::string &str);
 
   private:
-    typedef std::map<std::string, std::shared_ptr<ConsoleCommand> >
+    typedef std::map<std::string, std::shared_ptr<ConsoleCommand>>
         ConsoleCommandMap;
     ConsoleCommandMap consoleCommands;
 

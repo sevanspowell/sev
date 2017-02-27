@@ -6,8 +6,10 @@ add_library(sv
   src/ClientVariables.cpp
   src/Common.cpp
   src/Engine.cpp
+  src/Globals.cpp
   src/Log.cpp
   src/ProgramOptions.cpp
+  src/client/Client.cpp
   src/console/Commands.c
   src/console/Console.cpp
   src/console/ConsoleCommands.cpp
@@ -17,6 +19,7 @@ add_library(sv
   src/platform/Keycodes.cpp
   src/platform/Platform.cpp
   src/platform/SDL2Platform.cpp
+  src/resource/ConfigResourceLoader.cpp
   src/resource/DateTime.cpp
   src/resource/Resource.cpp
   src/resource/ResourceCache.cpp

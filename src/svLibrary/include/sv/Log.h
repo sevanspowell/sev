@@ -16,6 +16,7 @@
 #pragma once
 
 #include <cstdint>
+#include <iostream>
 #include <memory>
 #include <string>
 #include <vector>
@@ -94,7 +95,25 @@ class LogDistributor {
     void logMessage(const LogMessage &message);
 
   private:
-    typedef std::vector<std::shared_ptr<LogObserver> > ObserverList;
+    typedef std::vector<std::shared_ptr<LogObserver>> ObserverList;
     ObserverList observerList;
+};
+
+/// Simply observes all log messages and prints them to stdout.
+class DefaultLogObserver : public LogObserver {
+public:
+    DefaultLogObserver()
+        : LogObserver(LogArea::Enum::ALL, LogLevel::Enum::ALL) {}
+
+    /// \copydoc LogObserver::write
+    virtual void write(const LogMessage &message) {
+        std::cout << message.text << std::endl;
+    }
+
+    /// \copydoc LogObserver::getAreas
+    uint32_t getAreas() { return LogArea::Enum::ALL; }
+
+    /// \copydoc LogObserver::getLevels
+    uint32_t getLevels() { return LogLevel::Enum::ALL; }
 };
 }

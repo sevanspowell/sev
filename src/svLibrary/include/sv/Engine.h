@@ -17,7 +17,8 @@
 #pragma once
 #pragma once
 
-#include "sv/platform/Platform.h"
+#include <sv/client/Client.h>
+#include <sv/platform/Platform.h>
 
 namespace sv {
 class Engine {
@@ -30,9 +31,11 @@ class Engine {
     ///
     /// Must be called before other method calls.
     ///
+    /// \param argc Number of command-line arguments.
+    /// \param argv Command-line arguments.
     /// \returns True if initialization was successful, false otherwise.
     ///-------------------------------------------------------------------------
-    bool initialize();
+    bool initialize(int argc = 0, char *argv[] = nullptr);
 
     ///-------------------------------------------------------------------------
     /// Get the number of milliseconds since some fixed point (such as OS start)
@@ -44,5 +47,7 @@ class Engine {
     bool isInitialized;
 
     std::shared_ptr<Platform> platform;
+
+    Client client;
 };
 }

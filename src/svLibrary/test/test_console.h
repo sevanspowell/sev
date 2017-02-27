@@ -74,7 +74,7 @@ class ExampleConsoleCmd : public ConsoleCommand {
   public:
     ExampleConsoleCmd() : called(false) {}
 
-    virtual bool execute(Console *const console, int argc, char *argv[]) {
+    virtual bool execute(Console &console, int argc, char *argv[]) {
         EXPECT_EQ(argc, 3);
         EXPECT_TRUE(strcmp(argv[0], "test") == 0);
         EXPECT_TRUE(strcmp(argv[1], "hello") == 0);
@@ -128,7 +128,7 @@ class OverwriteConsoleCmd : public ConsoleCommand {
   public:
     OverwriteConsoleCmd() : called(false) {}
 
-    bool execute(Console *const console, int argc, char *argv[]) {
+    bool execute(Console &console, int argc, char *argv[]) {
         called = 1;
         return true;
     }
@@ -156,10 +156,10 @@ class EchoConsoleCmd : public ConsoleCommand {
   public:
     EchoConsoleCmd() {}
 
-    bool execute(Console *const console, int argc, char *argv[]) {
+    bool execute(Console &console, int argc, char *argv[]) {
         for (int i = 1; i < argc; ++i) {
-            console->appendToOutputBuffer(argv[i]);
-            console->appendToErrorBuffer(argv[i]);
+            console.appendToOutputBuffer(argv[i]);
+            console.appendToErrorBuffer(argv[i]);
         }
 
         return true;
@@ -182,7 +182,7 @@ TEST(Console, WriteToBufferTest) {
 
 namespace sv {
 class FailCmd : public ConsoleCommand {
-    virtual bool execute(Console *const console, int argc, char *argv[]) {
+    virtual bool execute(Console &console, int argc, char *argv[]) {
         return false;
     }
 };

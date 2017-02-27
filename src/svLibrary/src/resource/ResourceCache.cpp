@@ -2,7 +2,9 @@
 #include <cassert>
 #include <cstdlib>
 #include <cstring>
+#include <sstream>
 
+#include <sv/Globals.h>
 #include <sv/Common.h>
 #include <sv/resource/ResourceCache.h>
 
@@ -67,8 +69,10 @@ bool ResourceCache::registerResourceCollection(
         result = resourceCollection->open();
     }
 
-    resourceCollections.push_back(resourceCollection);
-
+    if (result == true) {
+        resourceCollections.push_back(resourceCollection);
+    }
+    
     return result;
 }
 
@@ -105,8 +109,7 @@ bool ResourceCache::makeRoom(size_t size) {
     }
 
     // Return false if there's no possible way to allocate the memory
-    while (size > (cacheSize - allocated))
-    {
+    while (size > (cacheSize - allocated)) {
         // The cache is empty, and there's still not enough room.
         if (leastRecentlyUsedList.empty()) {
             return false;
@@ -142,8 +145,8 @@ std::shared_ptr<ResourceHandle> ResourceCache::load(const Resource &resource) {
     std::shared_ptr<ResourceHandle> handle;
 
     // Find resource loader to use
-    for (ResourceLoaders::iterator it = resourceLoaders.begin();
-         it != resourceLoaders.end(); ++it) {
+    for (ResourceLoaders::reverse_iterator it = resourceLoaders.rbegin();
+         it != resourceLoaders.rend(); ++it) {
         std::shared_ptr<ResourceLoader> testLoader = *it;
 
         if (wildcardMatch(testLoader->getPattern().c_str(),
@@ -184,7 +187,11 @@ std::shared_ptr<ResourceHandle> ResourceCache::load(const Resource &resource) {
 
     // Resource file not found in any collection
     if (collection == nullptr) {
-        assert(collection && "Resource collection found for this resource!");
+        std::stringstream err;
+        err << "'" << resource.name
+            << "' not found in any resource collection.";
+        sv_globals::log(LogArea::Enum::COMMON, LogLevel::Enum::WARNING,
+                        err.str());
         return handle;
     }
 
@@ -199,8 +206,7 @@ std::shared_ptr<ResourceHandle> ResourceCache::load(const Resource &resource) {
     if (collection->getRawResource(resource, rawBuffer) == -1) {
         return handle;
     }
-    
-    
+
     void *buffer      = nullptr;
     size_t bufferSize = 0;
 
@@ -230,7 +236,7 @@ std::shared_ptr<ResourceHandle> ResourceCache::load(const Resource &resource) {
             return std::shared_ptr<ResourceHandle>();
         }
     }
-    
+
     // Everything worked
     // Insert resource into resource handle map
     resources[resource] = handle;

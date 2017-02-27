@@ -19,12 +19,16 @@
 
 #include <memory>
 
-#include "sv/Engine.h"
-#include "sv/console/Console.h"
+#include <sv/Engine.h>
+#include <sv/console/Console.h>
 
 namespace sv {
 class ScriptInterface {
   public:
+    ///-------------------------------------------------------------------------
+    /// Create a script interface, all pointers to other systems must be ready
+    /// to use (e.g. properly initialized).
+    ///-------------------------------------------------------------------------
     ScriptInterface(const std::shared_ptr<Engine> &enginePtr,
                     const std::shared_ptr<Console> &consolePtr)
         : engine(enginePtr), console(consolePtr) {}

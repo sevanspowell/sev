@@ -1,4 +1,4 @@
-/* Command seperator */
+/* Command seperator - must be a single character */
 #define SV_SEP_SEQ ";"
 
 typedef struct svCommand {
@@ -16,6 +16,11 @@ typedef struct svCommandError {
                     */
     int tokenPos;  /* Position of token causing error */
 } svCommandError;
+
+/**
+ * \returns 1 if the given character is a command separator, 0 if it is not.
+ */
+int svCommandsIsSep(char token);
 
 /**
  * Analyze the given token array and determine whether or not the given token

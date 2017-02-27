@@ -3,7 +3,7 @@
 #include <sv/resource/ResourceFolderPC.h>
 
 namespace resource_folder {
-const std::string assetDir("./src/svLibrary/test/assets");
+const std::string assetDir("./src/svLibrary/test/assets/test_resourcefolderpc");
 const size_t numAssets = 1;
 }
 
@@ -28,7 +28,8 @@ TEST(ResourceFolderPC, OpenFile) {
     memset(buffer, '\0', size);
 
     EXPECT_EQ(size, folder.getRawResource(file, (void *)buffer));
-    EXPECT_TRUE(strncmp(buffer, "Hello world!", 12) == 0);
+
+    EXPECT_TRUE(strncmp(buffer, "Hello world!\n", size) == 0);
 
     free(buffer);
 }

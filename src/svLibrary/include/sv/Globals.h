@@ -5,7 +5,7 @@
 #include <sv/Log.h>
 
 namespace sv_globals {
-static std::unique_ptr<sv::LogDistributor> logger(nullptr);
+extern std::unique_ptr<sv::LogDistributor> logger;
 
 inline void log(sv::LogArea::Enum area, sv::LogLevel::Enum level,
                 const std::string &message) {
