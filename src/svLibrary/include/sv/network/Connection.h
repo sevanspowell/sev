@@ -65,6 +65,7 @@ namespace ConnectionState {
 enum Enum { Disconnected, Listening, Connecting, ConnectFail, Connected };
 }
 
+/// Virtual network connection
 class Connection {
   public:
     ///-------------------------------------------------------------------------
