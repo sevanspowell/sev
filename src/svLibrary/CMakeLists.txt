@@ -16,6 +16,7 @@ add_library(sv
   src/console/Shell.c
   src/console/Tokenizer.c
   src/input/Input.cpp
+  src/network/Connection.cpp
   src/network/Sockets.cpp
   src/platform/Keycodes.cpp
   src/platform/Platform.cpp
