@@ -2,7 +2,8 @@
 #include <cstring>
 
 extern "C" {
-#include <sv/console/commands.h>
+#include <sv/console/Commands.h>
+#include <sv/console/Tokenizer.h>
 }
 
 // Ensure make null command works as expected

@@ -25,20 +25,21 @@ namespace sv {
 
 namespace LogArea {
 enum Enum : uint32_t {
-    COMMON   = 1 << 0,
-    CONSOLE  = 1 << 1,
-    PLATFORM = 1 << 2,
-    ALL      = ~(uint32_t)0
+    Common   = 1 << 0,
+    Console  = 1 << 1,
+    Platform = 1 << 2,
+    Network = 1 << 3,
+    All      = ~(uint32_t)0
 };
 }
 
 namespace LogLevel {
 enum Enum : uint32_t {
-    ERROR   = 1 << 0,
-    EVENT   = 1 << 1,
-    DEBUG   = 1 << 2,
-    WARNING = 1 << 3,
-    ALL     = ~(uint32_t)0
+    Error   = 1 << 0,
+    Event   = 1 << 1,
+    Debug   = 1 << 2,
+    Warning = 1 << 3,
+    All     = ~(uint32_t)0
 };
 }
 
@@ -103,7 +104,7 @@ class LogDistributor {
 class DefaultLogObserver : public LogObserver {
 public:
     DefaultLogObserver()
-        : LogObserver(LogArea::Enum::ALL, LogLevel::Enum::ALL) {}
+        : LogObserver(LogArea::Enum::All, LogLevel::Enum::All) {}
 
     /// \copydoc LogObserver::write
     virtual void write(const LogMessage &message) {
@@ -111,9 +112,9 @@ public:
     }
 
     /// \copydoc LogObserver::getAreas
-    uint32_t getAreas() { return LogArea::Enum::ALL; }
+    uint32_t getAreas() { return LogArea::Enum::All; }
 
     /// \copydoc LogObserver::getLevels
-    uint32_t getLevels() { return LogLevel::Enum::ALL; }
+    uint32_t getLevels() { return LogLevel::Enum::All; }
 };
 }

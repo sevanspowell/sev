@@ -50,7 +50,7 @@ bool Client::initialize(const ProgramOptions &options) {
                 std::stringstream err;
                 err << "Client failed to load config file '" << configFilePath
                     << "'.";
-                sv_globals::log(LogArea::Enum::COMMON, LogLevel::Enum::WARNING,
+                globals::log(LogArea::Enum::Common, LogLevel::Enum::Warning,
                                 err.str());
             }
 
@@ -58,11 +58,11 @@ bool Client::initialize(const ProgramOptions &options) {
         } else {
             std::stringstream err;
             err << "Client failed to load resource folder '" << game << "'.";
-            sv_globals::log(LogArea::Enum::COMMON, LogLevel::Enum::ERROR,
+            globals::log(LogArea::Enum::Common, LogLevel::Enum::Error,
                             err.str());
         }
     } else {
-        sv_globals::log(LogArea::Enum::COMMON, LogLevel::Enum::ERROR,
+        globals::log(LogArea::Enum::Common, LogLevel::Enum::Error,
                         "Client failed to initialize resource cache.");
     }
 
@@ -86,7 +86,7 @@ bool Client::initialize(const ProgramOptions &options) {
     //     std::stringstream err;
     //     err << "Failed to execute config file: " << configFilePath <<
     //     std::endl;
-    //     sv_globals::log(LogArea::Enum::COMMON, LogLevel::Enum::ERROR,
+    //     globals::log(LogArea::Enum::Common, LogLevel::Enum::Error,
     //                     err.str());
     // }
 

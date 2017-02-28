@@ -190,7 +190,7 @@ std::shared_ptr<ResourceHandle> ResourceCache::load(const Resource &resource) {
         std::stringstream err;
         err << "'" << resource.name
             << "' not found in any resource collection.";
-        sv_globals::log(LogArea::Enum::COMMON, LogLevel::Enum::WARNING,
+        globals::log(LogArea::Enum::Common, LogLevel::Enum::Warning,
                         err.str());
         return handle;
     }

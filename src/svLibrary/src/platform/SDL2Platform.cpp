@@ -16,12 +16,12 @@ bool SDL2Platform::initialize() {
 
     if (SDL_InitSubSystem(SDL_INIT_TIMER) != 0) {
         result = false;
-        sv_globals::log(LogArea::Enum::PLATFORM, LogLevel::Enum::ERROR,
-                        "SDL2: Failed to initialize timer subsystem.");
+        globals::log(LogArea::Enum::Platform, LogLevel::Enum::Error,
+                     "SDL2: Failed to initialize timer subsystem.");
     } else if (SDL_InitSubSystem(SDL_INIT_VIDEO) != 0) {
         result = false;
-        sv_globals::log(LogArea::Enum::PLATFORM, LogLevel::Enum::ERROR,
-                        "SDL2: Failed to initialize video subsystem.");
+        globals::log(LogArea::Enum::Platform, LogLevel::Enum::Error,
+                     "SDL2: Failed to initialize video subsystem.");
     }
 
     stopTextInput();

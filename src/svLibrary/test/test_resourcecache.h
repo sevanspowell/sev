@@ -3,6 +3,7 @@
 #include <sv/console/ConsoleCommands.h>
 #include <sv/resource/ConfigResourceLoader.h>
 #include <sv/resource/ResourceCache.h>
+#include <sv/resource/ResourceFolderPC.h>
 
 namespace resource_cache {
 const std::string assetDir("./src/svLibrary/test/assets/test_resourcecache");

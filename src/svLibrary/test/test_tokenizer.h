@@ -1,7 +1,7 @@
 #include <cstring>
 
 extern "C" {
-#include <sv/console/tokenizer.h>
+#include <sv/console/Tokenizer.h>
 }
 
 // Test ' quote inside argument is valid

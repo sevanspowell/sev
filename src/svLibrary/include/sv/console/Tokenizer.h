@@ -1,3 +1,5 @@
+#pragma once
+
 typedef struct svTokenizerError {
     /* Error code:
      *     -1,  if string is not properly closed, e.g. ("Hello world) instead of
