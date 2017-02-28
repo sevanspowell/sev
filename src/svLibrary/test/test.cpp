@@ -19,6 +19,7 @@ TEST(Test, One) { EXPECT_EQ(1, 1); }
 #include "test_sdl2platform.h"
 #include "test_shell.h"
 #include "test_tokenizer.h"
+#include "test_sockets.h"
 
 int main(int argc, char **argv) {
     sv::globals::logger =
