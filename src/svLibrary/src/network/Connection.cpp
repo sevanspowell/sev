@@ -1,3 +1,4 @@
+#include <cassert>
 #include <cstring>
 
 #include <sv/Globals.h>
@@ -54,6 +55,7 @@ ConnectionMode::Enum Connection::getMode() const { return mode; }
 ConnectionState::Enum Connection::getState() const { return state; }
 
 void Connection::update(float deltaTime) {
+    assert(isRunning && "Connection not running!");
     if (isRunning) {
         timeoutAccumulator += deltaTime;
         // If we reached timeout
@@ -78,6 +80,7 @@ void Connection::update(float deltaTime) {
 bool Connection::sendPacket(const void *data, size_t dataSize) {
     bool result = false;
 
+    assert(isRunning && "Connection not running!");
     if (isRunning) {
         if (address.getAddress() != 0) {
             uint8_t packet[dataSize + 4];
@@ -99,6 +102,7 @@ bool Connection::sendPacket(const void *data, size_t dataSize) {
 size_t Connection::receivePacket(void *buffer, size_t bufferSize) {
     size_t bytesReceived = 0;
 
+    assert(isRunning && "Connection not running!");
     if (isRunning) {
         uint8_t packet[bufferSize + 4];
 

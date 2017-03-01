@@ -25,7 +25,7 @@
 /// address.
 ///
 /// We define disconnection as not receiving packets from the other end of the
-/// connection for 'timeout' milliseconds.
+/// connection for 'timeout' seconds.
 ///
 /// Typical usage:
 ///     int16_t clientPort = 30001;
@@ -75,7 +75,7 @@ class Connection {
     /// is interested in. Packets received that don't have this id in their
     /// first four bytes will be discarded
     /// \param   timeout   How long to wait between receiving packets before
-    /// considering the connection terminated (in milliseconds).
+    /// considering the connection terminated (in seconds).
     ///-------------------------------------------------------------------------
     Connection(uint32_t protocolId_, float timeout_)
         : protocolId(protocolId_), timeout(timeout_),
@@ -122,7 +122,7 @@ class Connection {
     ///-------------------------------------------------------------------------
     /// Call this regularly to keep the state of the connection up-to-date.
     ///
-    /// \param   deltaTime   Time since last update in milliseconds.
+    /// \param   deltaTime   Time since last update in seconds.
     ///-------------------------------------------------------------------------
     void update(float deltaTime);
 

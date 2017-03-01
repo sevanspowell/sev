@@ -1,4 +1,10 @@
 #include <sv/Common.h>
+#include <sv/System.h>
+
+#if SV_PLATFORM_POSIX
+#include <time.h>
+#elif SV_PLATFORM_WINDOWS
+#endif
 
 namespace sv {
 char *stripSurroundingQuotes(char *str) {
@@ -65,5 +71,18 @@ test_match:
         return false;
     str++;
     goto test_match;
+}
+
+void sleep(float seconds) {
+    if (seconds >= 0) {
+#if SV_PLATFORM_POSIX
+        struct timespec t;
+        t.tv_sec  = (time_t)seconds;
+        t.tv_nsec = 0;
+        nanosleep(&t, NULL);
+#elif SV_PLATFORM_WINDOWS
+        Sleep((int)(seconds * 1000.0f));
+#endif
+    }
 }
 }

@@ -11,4 +11,9 @@ char *stripSurroundingQuotes(char *str);
 /// \returns True if the string \p str matches the wildcard pattern \pat.
 ///-----------------------------------------------------------------------------
 bool wildcardMatch(const char *pat, const char *str);
+
+///-----------------------------------------------------------------------------
+/// Causes the calling thread to sleep for \p seconds seconds.
+///-----------------------------------------------------------------------------
+void sleep(float seconds);
 }

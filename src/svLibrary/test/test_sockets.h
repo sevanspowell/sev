@@ -48,7 +48,7 @@ TEST(Address, EqualityInequality) {
 }
 
 TEST(Socket, OpenClose) {
-    sv::net::initializeSockets();
+    EXPECT_TRUE(sv::net::initializeSockets());
 
     sv::net::Socket socket;
     EXPECT_FALSE(socket.isOpen());
@@ -64,7 +64,7 @@ TEST(Socket, OpenClose) {
 }
 
 TEST(Socket, FailsOnSamePort) {
-    sv::net::initializeSockets();
+    EXPECT_TRUE(sv::net::initializeSockets());
 
     sv::net::Socket a, b;
     EXPECT_TRUE(a.open(30000));
@@ -77,7 +77,7 @@ TEST(Socket, FailsOnSamePort) {
 }
 
 TEST(Socket, SendAndRecvPackets) {
-    sv::net::initializeSockets();
+    EXPECT_TRUE(sv::net::initializeSockets());
 
     sv::net::Socket a, b;
     int16_t port1 = 30000;
